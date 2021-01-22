@@ -8,7 +8,7 @@ with open('bgm.json', 'r', encoding='UTF8') as f:
 
 links = []
 
-with open('songs.csv', newline='') as csvfile:
+with open('./user/songs.csv', newline='') as csvfile:
     file = csv.reader(csvfile, delimiter=',')
     for row in file:
         title = ', '.join(row)
