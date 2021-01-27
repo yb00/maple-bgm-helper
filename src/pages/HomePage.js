@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 
+import MusicSelectTable from "../components/MusicSelectTable";
+
+import "./HomePage.css";
+
 const HomePage = () => {
   const [bgm, setBgm] = useState([]);
   useEffect(() => {
@@ -13,7 +17,12 @@ const HomePage = () => {
       });
   }, []);
 
-  return <div><p>Please select from below:</p></div>;
+  return (
+    <div>
+      <p>Please select from below:</p>
+      <MusicSelectTable src={bgm} />
+    </div>
+  );
 };
 
 export default HomePage;
