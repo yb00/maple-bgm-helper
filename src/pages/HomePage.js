@@ -6,7 +6,7 @@ import "./HomePage.css";
 
 const HomePage = () => {
   const [bgm, setBgm] = useState([]);
-  
+
   useEffect(() => {
     fetch(
       "https://raw.githubusercontent.com/maplestory-music/maplebgm-db/prod/bgm.min.json"
@@ -14,12 +14,11 @@ const HomePage = () => {
       .then((response) => response.json())
       .then((data) => {
         setBgm(data);
-        console.log(data);
       });
   }, []);
 
   return (
-    <div class="home">
+    <div className="home">
       <p>Please select from below:</p>
       <MusicSelectTable src={bgm} />
     </div>
