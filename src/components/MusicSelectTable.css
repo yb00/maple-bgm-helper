@@ -1,5 +1,11 @@
 .select-table {
-  height: 500px;
+  height: 560px;
+  width: 500px;
+}
+
+.select-table a {
+  color: var(--color-red);
+  text-decoration: none;
 }
 
 .selected-cell {
