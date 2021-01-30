@@ -23,11 +23,11 @@ const MusicSelectTable = ({ src }) => {
   }, [src]);
 
   const addLink = (obj) => {
-    const id = obj.youtube
+    const id = obj.youtube;
     if (selection.indexOf(id) === -1) {
       setSelection(selection.push(id));
-      console.log(data)
     }
+    console.log(obj);
   };
 
   return (
@@ -37,19 +37,20 @@ const MusicSelectTable = ({ src }) => {
         onFirstDataRendered={onFirstDataRendered}
         pagination={true}
         paginationAutoPageSize={true}
-        rowClassRules={{ "selected-cell": "data.selected === 1" }}
       >
-        <AgGridColumn headerName="Filename" field="filename"></AgGridColumn>
         <AgGridColumn
-          headerName="Youtube ID"
-          field="youtube"
-          onCellClicked={(params) => {addLink(params.data)}}
-        ></AgGridColumn>
-        <AgGridColumn
-          headerName="Metadata"
+          headerName="Song Name"
           field="metadata.title"
-          cellClassRules
-        ></AgGridColumn>
+          onCellClicked={(params) => {
+            addLink(params.data);
+          }}
+          cellRenderer={(params) => {
+            const id = params.data.youtube;
+            const title = params.data.metadata.title;
+            return '<a href="https://youtu.be/' + id + '" target="_blank" rel="noopener noreferrer">#</a>' + ` ${title}`
+          }}
+        />
+        <AgGridColumn headerName="Year" field="metadata.year" />
       </AgGridReact>
     </div>
   );
