@@ -24,7 +24,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: [".tsx", ".ts", "jsx", ".js"],
+    extensions: [".tsx", ".ts", ".jsx", ".js"],
   },
   mode: "development",
   plugins: [
