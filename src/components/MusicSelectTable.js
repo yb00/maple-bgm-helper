@@ -4,7 +4,7 @@ import { AgGridColumn, AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 
-import "./MusicSelectTable.css"
+import "./MusicSelectTable.css";
 
 const MusicTableSettings = {
   animateRows: true,
@@ -22,56 +22,43 @@ const MusicTableSettings = {
 };
 
 const MusicSelectTable = ({ src }) => {
+  const [gridApi, setGridApi] = useState(null);
+  const [gridColumnApi, setGridColumnApi] = useState(null);
+
   const [selection, setSelection] = useState([]);
   const [data, setData] = useState([]);
+
+  const onGridReady = (params) => {
+    setGridApi(params.api);
+    setGridColumnApi(params.columnApi);
+  };
 
   const onFirstDataRendered = (params) => {
     params.api.sizeColumnsToFit();
   };
 
-  const setRowData = () => {
-    setData(
-      src.map((obj) => {
-        return { ...obj, selected: false };
-      })
-    );
-  };
-
-  const setSelectedData = (idx) => {
-    var newData = data;
-    newData[idx].selected = !data[idx].selected;
-    setData(newData);
-  };
-
   useEffect(() => {
-    setRowData();
+    setData(src);
   }, [src]);
-
-  const addToSelection = (obj, node) => {
-    const yt_id = obj.youtube;
-    const node_id = node.id;
-    console.log(node_id, data[node_id].selected);
-    if (selection.indexOf(yt_id) === -1) {
-      setSelection([...selection, yt_id]);
-      setSelectedData(node_id);
-    }
-  };
 
   return (
     <>
-      <div className="ag-theme-alpine select-table">
+      <div className="ag-theme-alpine music-table-wrapper">
         <input type="text" className="table-search-input"></input>
         <AgGridReact
           rowData={data}
           {...MusicTableSettings}
-          onRowClicked={(params) => {
-            addToSelection(params.data, params.node);
-          }}
+          onRowClicked={(params) => {resetGridSelection()}}
+          onGridReady={onGridReady}
           onFirstDataRendered={onFirstDataRendered}
+          rowClassRules={{ "row-selected": "data.selected === true" }}
+          rowSelection="multiple"
+          rowMultiSelectWithClick={true}
         >
           <AgGridColumn
             headerName="Song Name"
             field="metadata.title"
+            checkboxSelection={true}
             cellRenderer={(params) => {
               const id = params.data.youtube;
               const title = params.data.metadata.title;
