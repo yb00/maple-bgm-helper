@@ -1,9 +1,9 @@
-.select-table {
+.music-table-wrapper {
   height: 560px;
   width: 500px;
 }
 
-.select-table a {
+.music-table-wrapper a {
   color: var(--color-red);
   text-decoration: none;
 }
