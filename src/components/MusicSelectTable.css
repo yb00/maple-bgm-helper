@@ -8,10 +8,6 @@
   text-decoration: none;
 }
 
-.selected-row {
-  background-color: lightblue !important;
-}
-
 .table-search-input {
   padding: 0.5rem;
   margin-bottom: 0.5rem;
