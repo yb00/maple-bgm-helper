@@ -25,8 +25,9 @@ const MusicSelectTable = ({ src }) => {
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
-  const [selection, setSelection] = useState([]);
   const [data, setData] = useState([]);
+
+  const [playlist, setPlaylist] = useState([])
 
   const onGridReady = (params) => {
     setGridApi(params.api);
@@ -37,6 +38,12 @@ const MusicSelectTable = ({ src }) => {
     params.api.sizeColumnsToFit();
   };
 
+  const setSelectedData = () => {
+    const nodes = gridApi.getSelectedNodes()
+    const yt_ids = nodes.map(node => node.data.youtube)
+    setPlaylist(yt_ids)
+  }
+
   useEffect(() => {
     setData(src);
   }, [src]);
@@ -45,15 +52,16 @@ const MusicSelectTable = ({ src }) => {
     <>
       <div className="ag-theme-alpine music-table-wrapper">
         <input type="text" className="table-search-input"></input>
+        <button onClick={() => gridApi.deselectAll()}>Clear Selected</button>
         <AgGridReact
           rowData={data}
           {...MusicTableSettings}
-          onRowClicked={(params) => {resetGridSelection()}}
           onGridReady={onGridReady}
           onFirstDataRendered={onFirstDataRendered}
           rowClassRules={{ "row-selected": "data.selected === true" }}
           rowSelection="multiple"
           rowMultiSelectWithClick={true}
+          onSelectionChanged={() => setSelectedData()}
         >
           <AgGridColumn
             headerName="Song Name"
