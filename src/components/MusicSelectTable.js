@@ -27,7 +27,7 @@ const MusicSelectTable = ({ src }) => {
 
   const [data, setData] = useState([]);
 
-  const [playlist, setPlaylist] = useState([])
+  const [playlist, setPlaylist] = useState([]);
 
   const onGridReady = (params) => {
     setGridApi(params.api);
@@ -39,17 +39,17 @@ const MusicSelectTable = ({ src }) => {
   };
 
   const setSelectedData = () => {
-    const nodes = gridApi.getSelectedNodes()
-    const yt_ids = nodes.map(node => node.data.youtube)
-    setPlaylist(yt_ids)
-  }
+    const nodes = gridApi.getSelectedNodes();
+    const yt_ids = nodes.map((node) => node.data.youtube);
+    setPlaylist(yt_ids);
+  };
 
   useEffect(() => {
     setData(src);
   }, [src]);
 
   return (
-    <>
+    <div className="row">
       <div className="ag-theme-alpine music-table-wrapper">
         <input type="text" className="table-search-input"></input>
         <button onClick={() => gridApi.deselectAll()}>Clear Selected</button>
@@ -81,7 +81,25 @@ const MusicSelectTable = ({ src }) => {
           <AgGridColumn headerName="Year" field="metadata.year" />
         </AgGridReact>
       </div>
-    </>
+      <div style={{ width: "1rem" }}></div>
+      <div>
+        <input
+          className="generated"
+          value={
+            playlist.length === 0
+              ? ""
+              : `youtube-dl ${playlist.map(id => id).join(' ') }`
+          }
+          placeholder="Download config for youtube-dl will show up here."
+        ></input>
+        <p>Selected: </p>
+        <div className="selected">
+          {playlist.map((id) => (
+            <span>{id}</span>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 };
 
