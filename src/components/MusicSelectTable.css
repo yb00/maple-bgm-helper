@@ -13,3 +13,29 @@
   margin-bottom: 0.5rem;
   width: 100%;
 }
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.selected {
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  margin-bottom: 5px;
+}
+
+.generated {
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  color: var(--color-red);
+  width: 500px;
+}
+
+.generated:hover {
+  color: var(--color-black-soft);
+}
