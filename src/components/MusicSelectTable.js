@@ -52,7 +52,7 @@ const MusicSelectTable = ({ src }) => {
     <div className="row">
       <div className="ag-theme-alpine music-table-wrapper">
         <input type="text" className="table-search-input"></input>
-        <button onClick={() => gridApi.deselectAll()}>Clear Selected</button>
+        <button className="music-table-clear" onClick={() => gridApi.deselectAll()}>Clear Selected</button>
         <AgGridReact
           rowData={data}
           {...MusicTableSettings}

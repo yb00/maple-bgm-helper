@@ -8,6 +8,13 @@
   text-decoration: none;
 }
 
+.music-table-clear {
+  padding: 10px 10px;
+  width: 100%;
+  border: solid 1px var(--color-grey);
+  border-bottom: none;
+}
+
 .table-search-input {
   padding: 0.5rem;
   margin-bottom: 0.5rem;
