@@ -1,0 +1,6 @@
+nav {
+    color: white;
+    background: var(--color-black-soft);
+    padding: 10px;
+    margin-bottom: 1rem;
+}
