@@ -21,11 +21,35 @@ const MusicTableSettings = {
   domLayout: "autoHeight",
 };
 
+type Metadata = {
+  albumArtist: string;
+  artist: string;
+  title: string;
+  year: string;
+}
+
+type Source = {
+  client: string;
+  date: string;
+  structure: string;
+  version: string;
+}
+
+type srcData = {
+  description: string;
+  filename: string;
+  mark: string;
+  metadata: Metadata;
+  source: Source;
+  youtube: string;
+}
+
 type MusicTableProps = {
-  src: any;
+  src: srcData[];
 }
 
 const MusicSelectTable: FunctionComponent<MusicTableProps> = ({ src }) => {
+  console.log(src)
   // const [gridApi, setGridApi] = useState(null);
   // const [gridColumnApi, setGridColumnApi] = useState(null);
 
