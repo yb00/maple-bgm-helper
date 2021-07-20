@@ -37,6 +37,7 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
+    "@ag-grid-community/all-modules": "^25.3.0",
     "ag-grid-community": "^25.0.1",
     "ag-grid-react": "^25.0.1",
     "lodash": "^4.17.20",

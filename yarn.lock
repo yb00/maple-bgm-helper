@@ -2,6 +2,42 @@
 # yarn lockfile v1
 
 
+"@ag-grid-community/all-modules@^25.3.0":
+  version "25.3.0"
+  resolved "https://registry.yarnpkg.com/@ag-grid-community/all-modules/-/all-modules-25.3.0.tgz#6d2c4b266d43c86cee84e5974dcfab7af6f357b6"
+  integrity sha512-77KcTqtGMLT69vuikPV/y0BXHODDVjw6G5jj53Z+M1w2jzLYOXshctjPhBkxyi03EAHyyn8c4upw1rJoAXMXPQ==
+  dependencies:
+    "@ag-grid-community/client-side-row-model" "~25.3.0"
+    "@ag-grid-community/core" "~25.3.0"
+    "@ag-grid-community/csv-export" "~25.3.0"
+    "@ag-grid-community/infinite-row-model" "~25.3.0"
+
+"@ag-grid-community/client-side-row-model@~25.3.0":
+  version "25.3.0"
+  resolved "https://registry.yarnpkg.com/@ag-grid-community/client-side-row-model/-/client-side-row-model-25.3.0.tgz#928dd75033fcb7df10f28755d2276f9ed8aa618a"
+  integrity sha512-uluZPRb3yTzOAsS6y+rWfdWCdxBCGn5ZN5T4tDP5nCpfQcuKOpuiFEBe4UflVO1SxEky30otfkah5d++8kq6kQ==
+  dependencies:
+    "@ag-grid-community/core" "~25.3.0"
+
+"@ag-grid-community/core@~25.3.0":
+  version "25.3.0"
+  resolved "https://registry.yarnpkg.com/@ag-grid-community/core/-/core-25.3.0.tgz#f98fb4a3850699dd672c350d160909941c19f4b5"
+  integrity sha512-AJneyxmgtsLkAIAkeXlqjcCbTr/FpGyZkH/ZrT4SLeNOvHNLD7tCZINOBO2UCZVguI6Xv0c5g6c9y8NXOpc+lQ==
+
+"@ag-grid-community/csv-export@~25.3.0":
+  version "25.3.0"
+  resolved "https://registry.yarnpkg.com/@ag-grid-community/csv-export/-/csv-export-25.3.0.tgz#d41bbf0a5963e3fa690562de05080c0070dbca58"
+  integrity sha512-fq4XgXH2oY9T+XevxcnMUnmc/oX+xaQi10xgW4fG7TTj5LU+v+nky/BdVTQWT91AsaTKNg4h+QQelSpCSYKhyQ==
+  dependencies:
+    "@ag-grid-community/core" "~25.3.0"
+
+"@ag-grid-community/infinite-row-model@~25.3.0":
+  version "25.3.0"
+  resolved "https://registry.yarnpkg.com/@ag-grid-community/infinite-row-model/-/infinite-row-model-25.3.0.tgz#85c26545b8dfe6bae89f9e10a11408095e537bd4"
+  integrity sha512-VvPRHjVn70/tt4K7xE682Hcax1cwgEFRXgpR1PEL7n4Q+RH9A2dunFlhktPfXQdCWWrdouzgpN1Oqcn7I+QIIQ==
+  dependencies:
+    "@ag-grid-community/core" "~25.3.0"
+
 "@babel/code-frame@^7.10.4", "@babel/code-frame@^7.12.11":
   version "7.12.11"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.12.11.tgz#f4ad435aa263db935b8f10f2c552d23fb716a63f"
