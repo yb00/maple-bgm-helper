@@ -1,5 +1,6 @@
 import React, { useState, useEffect, FunctionComponent } from "react";
 import { AgGridColumn, AgGridReact } from "ag-grid-react";
+import { Grid, GridOptions, ModuleRegistry } from "ag-grid-community"
 
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
@@ -49,15 +50,15 @@ type MusicTableProps = {
 }
 
 const MusicSelectTable: FunctionComponent<MusicTableProps> = ({ src }) => {
-  console.log(src)
-  // const [gridApi, setGridApi] = useState(null);
-  // const [gridColumnApi, setGridColumnApi] = useState(null);
+  const [gridApi, setGridApi] = useState(null);
+  const [gridColumnApi, setGridColumnApi] = useState(null);
 
-  // const [data, setData] = useState([]);
+  const [data, setData] = useState([]);
 
   // const [playlist, setPlaylist] = useState([]);
 
   // const onGridReady = (params) => {
+  //   console.log("params:", params)
   //   setGridApi(params.api);
   //   setGridColumnApi(params.columnApi);
   // };
@@ -67,14 +68,16 @@ const MusicSelectTable: FunctionComponent<MusicTableProps> = ({ src }) => {
   // };
 
   // const setSelectedData = () => {
-  //   const nodes = gridApi.getSelectedNodes();
+  //   var nodes;
+  //   if(gridApi != null)
+  //     nodes = gridApi.getSelectedNodes();
   //   const yt_ids = nodes.map((node) => node.data.youtube);
   //   setPlaylist(yt_ids);
   // };
 
-  // useEffect(() => {
-  //   setData(src);
-  // }, [src]);
+  useEffect(() => {
+    setData(src);
+  }, [src]);
 
   return (
     <div></div>
