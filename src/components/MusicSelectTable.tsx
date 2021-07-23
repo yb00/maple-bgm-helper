@@ -14,33 +14,7 @@ import 'ag-grid-community/dist/styles/ag-grid.css'
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css'
 
 import './MusicSelectTable.css'
-
-type Metadata = {
-    albumArtist: string
-    artist: string
-    title: string
-    year: string
-}
-
-type Source = {
-    client: string
-    date: string
-    structure: string
-    version: string
-}
-
-type srcData = {
-    description: string
-    filename: string
-    mark: string
-    metadata: Metadata
-    source: Source
-    youtube: string
-}
-
-type MusicTableProps = {
-    src: srcData[]
-}
+import { useDataSourceState } from './DataSourceProvider'
 
 const getGridOptions: () => GridOptions = () => {
     return {
@@ -83,25 +57,25 @@ const getColDef: () => ColDef[] = () => {
     ]
 }
 
-const MusicSelectTable: FunctionComponent<MusicTableProps> = ({ src }) => {
-
+const MusicSelectTable: React.FC<{ query: string | undefined }> = ({
+    query,
+}) => {
+    const dataSource = useDataSourceState()
     const gridApi = useRef<ColumnApi | null>(null)
     const colDef = useRef<ColDef[]>([])
     const gridOptions = useRef<GridOptions | undefined>(undefined)
     const gridColumnApi = useRef<ColumnApi | null>(null)
-    colDef.current = getColDef();
-    gridOptions.current = getGridOptions();
+    colDef.current = getColDef()
+    gridOptions.current = getGridOptions()
 
     const onGridReady = (params: GridReadyEvent): void => {
-      gridApi.current = params.api;
-      gridColumnApi.current = params.columnApi;
-    };
-  
-    const onFirstDataRendered = (event: FirstDataRenderedEvent): void => {
-      event.columnApi.autoSizeAllColumns();
-    };
+        gridApi.current = params.api
+        gridColumnApi.current = params.columnApi
+    }
 
-    const [data, setData] = useState([])
+    const onFirstDataRendered = (event: FirstDataRenderedEvent): void => {
+        event.columnApi.autoSizeAllColumns()
+    }
 
     // const [playlist, setPlaylist] = useState([]);
 
@@ -112,10 +86,6 @@ const MusicSelectTable: FunctionComponent<MusicTableProps> = ({ src }) => {
     //   const yt_ids = nodes.map((node) => node.data.youtube);
     //   setPlaylist(yt_ids);
     // };
-
-    useEffect(() => {
-        setData(src)
-    }, [src])
 
     return (
         <div></div>
