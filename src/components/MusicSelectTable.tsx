@@ -88,58 +88,16 @@ const MusicSelectTable: React.FC<{ query: string | undefined }> = ({
     // };
 
     return (
-        <div></div>
-        //   <div className="row">
-        //     <div className="ag-theme-alpine music-table-wrapper">
-        //       <input type="text" className="table-search-input"></input>
-        //       <button className="music-table-clear" onClick={() => gridApi.deselectAll()}>Clear Selected</button>
-        //       <AgGridReact
-        //         rowData={data}
-        //         {...MusicTableSettings}
-        //         onGridReady={onGridReady}
-        //         onFirstDataRendered={onFirstDataRendered}
-        //         rowClassRules={{ "row-selected": "data.selected === true" }}
-        //         rowSelection="multiple"
-        //         rowMultiSelectWithClick={true}
-        //         onSelectionChanged={() => setSelectedData()}
-        //       >
-        //         <AgGridColumn
-        //           headerName="Song Name"
-        //           field="metadata.title"
-        //           checkboxSelection={true}
-        //           cellRenderer={(params) => {
-        //             const id = params.data.youtube;
-        //             const title = params.data.metadata.title;
-        //             return (
-        //               '<a href="https://youtu.be/' +
-        //               id +
-        //               '" target="_blank" rel="noopener noreferrer">#</a>' +
-        //               ` ${title}`
-        //             );
-        //           }}
-        //         />
-        //         <AgGridColumn headerName="Year" field="metadata.year" />
-        //       </AgGridReact>
-        //     </div>
-        //     <div style={{ width: "1rem" }}></div>
-        //     <div>
-        //       <input
-        //         className="generated"
-        //         value={
-        //           playlist.length === 0
-        //             ? ""
-        //             : `youtube-dl ${playlist.map(id => id).join(' ') }`
-        //         }
-        //         placeholder="Download config for youtube-dl will show up here."
-        //       ></input>
-        //       <p>Selected: </p>
-        //       <div className="selected">
-        //         {playlist.map((id) => (
-        //           <span>{id}</span>
-        //         ))}
-        //       </div>
-        //     </div>
-        //   </div>
+        <AgGridReact
+            columnDefs={colDef.current}
+            rowData={dataSource}
+            gridOptions={gridOptions}
+            onFirstDataRendered={onFirstDataRendered}
+            onGridReady={onGridReady}
+            
+            >
+        
+        </AgGridReact>
     )
 }
 
