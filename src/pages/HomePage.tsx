@@ -7,20 +7,20 @@ import "./HomePage.css";
 const HomePage = () => {
   const [bgm, setBgm] = useState([]);
 
-  useEffect(() => {
-    fetch(
-      "https://raw.githubusercontent.com/maplestory-music/maplebgm-db/prod/bgm.min.json"
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setBgm(data);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch(
+  //     "https://raw.githubusercontent.com/maplestory-music/maplebgm-db/prod/bgm.min.json"
+  //   )
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setBgm(data);
+  //     });
+  // }, []);
 
   return (
     <div className="home">
       <p>Please select from below:</p>
-      <MusicSelectTable src={bgm} />
+      <MusicSelectTable query='test'/>
     </div>
   );
 };

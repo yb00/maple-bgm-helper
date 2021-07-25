@@ -1,20 +1,19 @@
-import React, { useState, useEffect, FunctionComponent, useRef } from 'react'
-import { AgGridColumn, AgGridReact } from 'ag-grid-react'
+import React, { useRef } from 'react'
+import { AgGridReact } from 'ag-grid-react'
 import {
     ColDef,
     ColumnApi,
     FirstDataRenderedEvent,
-    Grid,
+    GridApi,
     GridOptions,
     GridReadyEvent,
-    ModuleRegistry,
 } from 'ag-grid-community'
 
 import 'ag-grid-community/dist/styles/ag-grid.css'
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css'
 
 import './MusicSelectTable.css'
-import { useDataSourceState } from './DataSourceProvider'
+import { useDataSourceState } from '../context/DataSourceContext';
 
 const getGridOptions: () => GridOptions = () => {
     return {
@@ -61,10 +60,10 @@ const MusicSelectTable: React.FC<{ query: string | undefined }> = ({
     query,
 }) => {
     const dataSource = useDataSourceState()
-    const gridApi = useRef<ColumnApi | null>(null)
+    const gridApi = useRef<GridApi | null>(null)
+    const gridColumnApi = useRef<ColumnApi | null>(null)
     const colDef = useRef<ColDef[]>([])
     const gridOptions = useRef<GridOptions | undefined>(undefined)
-    const gridColumnApi = useRef<ColumnApi | null>(null)
     colDef.current = getColDef()
     gridOptions.current = getGridOptions()
 
@@ -91,12 +90,10 @@ const MusicSelectTable: React.FC<{ query: string | undefined }> = ({
         <AgGridReact
             columnDefs={colDef.current}
             rowData={dataSource}
-            gridOptions={gridOptions}
+            gridOptions={gridOptions.current}
             onFirstDataRendered={onFirstDataRendered}
             onGridReady={onGridReady}
-            
             >
-        
         </AgGridReact>
     )
 }
