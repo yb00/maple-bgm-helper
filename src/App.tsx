@@ -1,14 +1,16 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 
 import Navbar from './components/Navbar'
 import HomePage from './pages/HomePage'
 
-const App = () => {
+import { DataSourceProvider } from './context/DataSourceContext'
+
+const App = (): ReactElement => {
     return (
-        <>
+        <DataSourceProvider>
             <Navbar />
             <HomePage />
-        </>
+        </DataSourceProvider>
     )
 }
 
