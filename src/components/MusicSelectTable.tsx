@@ -13,7 +13,7 @@ import 'ag-grid-community/dist/styles/ag-grid.css'
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css'
 
 import './MusicSelectTable.css'
-import { useDataSourceState } from '../context/DataSourceContext';
+import { useDataSourceState } from '../context/DataSourceContext'
 
 const getGridOptions: () => GridOptions = () => {
     return {
@@ -87,14 +87,22 @@ const MusicSelectTable: React.FC<{ query: string | undefined }> = ({
     // };
 
     return (
-        <AgGridReact
-            columnDefs={colDef.current}
-            rowData={dataSource}
-            gridOptions={gridOptions.current}
-            onFirstDataRendered={onFirstDataRendered}
-            onGridReady={onGridReady}
+        <div className="ag-theme-alpine music-table-wrapper">
+            <input type="text" className="table-search-input"></input>
+            {/* <button
+                className="music-table-clear"
+                onClick={() => gridApi.deselectAll()}
             >
-        </AgGridReact>
+                Clear Selected
+            </button> */}
+            <AgGridReact
+                columnDefs={colDef.current}
+                rowData={dataSource}
+                gridOptions={gridOptions.current}
+                onFirstDataRendered={onFirstDataRendered}
+                onGridReady={onGridReady}
+            ></AgGridReact>
+        </div>
     )
 }
 
