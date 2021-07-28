@@ -71,30 +71,12 @@ const MusicSelectTable: React.FC<{ query: string | undefined }> = ({
         gridApi.current = params.api
         gridColumnApi.current = params.columnApi
     }
-
     const onFirstDataRendered = (event: FirstDataRenderedEvent): void => {
         event.columnApi.autoSizeAllColumns()
     }
-
-    // const [playlist, setPlaylist] = useState([]);
-
-    // const setSelectedData = () => {
-    //   var nodes;
-    //   if(gridApi != null)
-    //     nodes = gridApi.getSelectedNodes();
-    //   const yt_ids = nodes.map((node) => node.data.youtube);
-    //   setPlaylist(yt_ids);
-    // };
-
     return (
         <div className="ag-theme-alpine music-table-wrapper">
             <input type="text" className="table-search-input"></input>
-            {/* <button
-                className="music-table-clear"
-                onClick={() => gridApi.deselectAll()}
-            >
-                Clear Selected
-            </button> */}
             <AgGridReact
                 columnDefs={colDef.current}
                 rowData={dataSource}

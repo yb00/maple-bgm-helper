@@ -1,28 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react'
 
-import MusicSelectTable from "../components/MusicSelectTable";
+import MusicSelectTable from '../components/MusicSelectTable'
 
-import "./HomePage.css";
+import './HomePage.css'
 
 const HomePage = () => {
-  const [bgm, setBgm] = useState([]);
+    const [bgm, setBgm] = useState([])
 
-  // useEffect(() => {
-  //   fetch(
-  //     "https://raw.githubusercontent.com/maplestory-music/maplebgm-db/prod/bgm.min.json"
-  //   )
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setBgm(data);
-  //     });
-  // }, []);
+    return (
+        <div className="home">
+            <p>Please select from below:</p>
+            <MusicSelectTable query="test" />
+        </div>
+    )
+}
 
-  return (
-    <div className="home">
-      <p>Please select from below:</p>
-      <MusicSelectTable query='test'/>
-    </div>
-  );
-};
-
-export default HomePage;
+export default HomePage
