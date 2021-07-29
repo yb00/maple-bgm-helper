@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 
 import MusicSelectTable from '../components/MusicSelectTable'
+import { IMusicRecordJson } from '../models/DataModel'
 
 import './HomePage.css'
 
-const HomePage = () => {
-    const [bgm, setBgm] = useState([])
+const HomePage: React.FC<{initialPlaylist?: IMusicRecordJson[]}> = ({initialPlaylist = []}) => {
+    const [playlist, setPlaylist] = useState(initialPlaylist)
 
     return (
         <div className="home">
