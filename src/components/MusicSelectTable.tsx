@@ -77,12 +77,21 @@ const MusicSelectTable: React.FC<{ query: string | undefined }> = ({
     return (
         <div className="ag-theme-alpine music-table-wrapper">
             <input type="text" className="table-search-input"></input>
+            <button
+                className="music-table-clear"
+                onClick={() => gridApi.current?.deselectAll()}
+            >
+                Clear Selected
+            </button>
             <AgGridReact
                 columnDefs={colDef.current}
                 rowData={dataSource}
                 gridOptions={gridOptions.current}
                 onFirstDataRendered={onFirstDataRendered}
                 onGridReady={onGridReady}
+                rowClassRules={{ 'row-selected': 'data.selected === true' }}
+                rowSelection="multiple"
+                rowMultiSelectWithClick={true}
             ></AgGridReact>
         </div>
     )
