@@ -59,13 +59,7 @@ const getColDef: () => ColDef[] = () => {
 const MusicSelectTable: React.FC<{ query: string | undefined }> = ({
     query,
 }) => {
-    const dataSource = useDataSourceState()
-    const gridApi = useRef<GridApi | null>(null)
-    const gridColumnApi = useRef<ColumnApi | null>(null)
-    const colDef = useRef<ColDef[]>([])
-    const gridOptions = useRef<GridOptions | undefined>(undefined)
-    colDef.current = getColDef()
-    gridOptions.current = getGridOptions()
+    const playlist = usePlaylistState();
 
     const onGridReady = (params: GridReadyEvent): void => {
         gridApi.current = params.api
