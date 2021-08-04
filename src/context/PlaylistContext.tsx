@@ -1,7 +1,7 @@
 import React from 'react';
 import { IPlaylist } from '../models/PlaylistModel';
 
-type State = IPlaylist[];
+type State = [IPlaylist[], React.Dispatch<React.SetStateAction<IPlaylist[]>>];
 type PlaylistProviderProps = { children: React.ReactNode };
 
 const PlaylistStateContext = React.createContext<State | undefined>(undefined);
@@ -9,7 +9,7 @@ const PlaylistStateContext = React.createContext<State | undefined>(undefined);
 export const PlaylistProvider: ({
     children,
 }: PlaylistProviderProps) => React.ReactElement = ({ children }) => {
-    const [state, setState] = React.useState<State>([]);
+    const [state, setState] = React.useState<State>();
 
     return (
         <PlaylistStateContext.Provider value={state}>

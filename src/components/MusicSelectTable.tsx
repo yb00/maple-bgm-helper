@@ -63,7 +63,7 @@ const MusicSelectTable: React.FC<{ query: string | undefined }> = ({
     query,
 }) => {
     const dataSource = useDataSourceState();
-    const playlist = usePlaylistState();
+    // const [playlist, setPlaylist] = usePlaylistState();
     const gridApi = useRef<GridApi | null>(null);
     const gridColumnApi = useRef<ColumnApi | null>(null);
     const colDef = useRef<ColDef[]>([]);
@@ -79,7 +79,7 @@ const MusicSelectTable: React.FC<{ query: string | undefined }> = ({
         event.columnApi.autoSizeAllColumns();
     };
     const onSelectionChanged = (event: SelectionChangedEvent): void => {
-        // var nodes = event.api.getSelectedNodes();
+      console.log()
     };
 
     return (
