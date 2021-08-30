@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react';
 
-import "./Navbar.scss";
+import './Navbar.scss';
 
 const Navbar = () => {
-  return (
-    <nav>
-      <h1 className="navbar-brand">MapleBGM Downloader</h1>
-    </nav>
-  );
+    return (
+        <nav>
+            <h1 className="navbar-brand">MapleBGM Downloader</h1>
+        </nav>
+    );
 };
 
 export default Navbar;

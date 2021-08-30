@@ -79,7 +79,7 @@ const MusicSelectTable: React.FC<{ query: string | undefined }> = ({
         event.columnApi.autoSizeAllColumns();
     };
     const onSelectionChanged = (event: SelectionChangedEvent): void => {
-      console.log()
+        console.log();
     };
 
     return (

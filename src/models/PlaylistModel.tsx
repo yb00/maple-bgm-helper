@@ -1,5 +1,5 @@
-import { IMusicRecordJson } from './DataModel'
+import { IMusicRecordJson } from './DataModel';
 
 export interface IPlaylist extends IMusicRecordJson {
-    id: Number
+    id: Number;
 }
