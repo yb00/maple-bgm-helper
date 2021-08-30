@@ -4,7 +4,7 @@ import MusicSelectTable from '../components/MusicSelectTable'
 import { PlaylistProvider } from '../context/PlaylistContext'
 import { IMusicRecordJson } from '../models/DataModel'
 
-import './HomePage.css'
+import './HomePage.scss'
 
 const HomePage: React.FC<{initialPlaylist?: IMusicRecordJson[]}> = ({initialPlaylist = []}) => {
     const [playlist, setPlaylist] = useState(initialPlaylist)

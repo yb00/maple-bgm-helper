@@ -10,10 +10,10 @@ import {
     GridReadyEvent,
 } from 'ag-grid-community';
 
-import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
+import 'ag-grid-community/dist/styles/ag-grid.scss';
+import 'ag-grid-community/dist/styles/ag-theme-alpine/sass/ag-theme-alpine.scss';
 
-import './MusicSelectTable.css';
+import './MusicSelectTable.scss';
 import { useDataSourceState } from '../context/DataSourceContext';
 import { usePlaylistState } from '../context/PlaylistContext';
 import { IMusicRecordJson } from '../models/DataModel';
@@ -84,13 +84,22 @@ const MusicSelectTable: React.FC<{ query: string | undefined }> = ({
 
     return (
         <div className="ag-theme-alpine music-table-wrapper">
-            <input type="text" className="table-search-input"></input>
-            <button
-                className="music-table-clear"
-                onClick={() => gridApi.current?.deselectAll()}
-            >
-                Clear Selected
-            </button>
+            <div className="music-table__panel-wrapper">
+                <div className="centered">
+                    <input
+                        type="text"
+                        className="table-search__input"
+                        placeholder="Search for songs here."
+                    ></input>
+                </div>
+                <div className="hrule"></div>
+                <button
+                    className="music-table__btn-clear"
+                    onClick={() => gridApi.current?.deselectAll()}
+                >
+                    Clear Selected
+                </button>
+            </div>
             <AgGridReact
                 columnDefs={colDef.current}
                 rowData={dataSource}
