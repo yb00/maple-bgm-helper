@@ -1,7 +1,7 @@
 {
-  "name": "maplestory-bgm-dl",
+  "name": "maple-bgm-helper",
   "version": "1.0.0",
-  "description": "Download from maplebgm-db.",
+  "description": "Helper tool(s) for maplebgm-db.",
   "main": "index.js",
   "babel": {
     "presets": [
@@ -9,7 +9,7 @@
       "@babel/preset-react"
     ]
   },
-  "repository": "https://github.com/yb00/maplestory-bgm-dl",
+  "repository": "https://github.com/yb00/maple-bgm-helper",
   "author": "yb00 <yagobraz98@gmail.com>",
   "license": "MIT",
   "private": false,
@@ -43,6 +43,8 @@
     "date-fns": "^2.22.1",
     "lodash": "^4.17.20",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "sass": "^1.38.2",
+    "sass-loader": "^12.1.0"
   }
 }
