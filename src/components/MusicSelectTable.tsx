@@ -84,17 +84,17 @@ const MusicSelectTable: React.FC<{ query: string | undefined }> = ({
 
     return (
         <div className="ag-theme-alpine music-table-wrapper">
-            <div className="music-table__panel-wrapper">
+            <div className="music-grid-panel">
                 <div className="centered">
                     <input
                         type="text"
-                        className="table-search__input"
+                        className="input-filter"
                         placeholder="Search for songs here."
                     ></input>
                 </div>
                 <div className="hrule"></div>
                 <button
-                    className="music-table__btn-clear"
+                    className="btn-clear-filter"
                     onClick={() => gridApi.current?.deselectAll()}
                 >
                     Clear Selected
