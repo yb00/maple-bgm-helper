@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import MusicSelectTable from '../components/MusicSelectTable';
+import MusicResults from '../components/MusicResults';
 import { PlaylistProvider } from '../context/PlaylistContext';
 import { IMusicRecordJson } from '../models/DataModel';
 
@@ -15,7 +16,8 @@ const HomePage: React.FC<{ initialPlaylist?: IMusicRecordJson[] }> = ({
         <div className="home">
             <p>Please select from below:</p>
             <PlaylistProvider>
-                <MusicSelectTable query="test" />
+                <MusicSelectTable query="" />
+                <MusicResults />
             </PlaylistProvider>
         </div>
     );
