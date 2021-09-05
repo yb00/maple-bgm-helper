@@ -1,10 +1,13 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import {
     ColDef,
     ColumnApi,
     FirstDataRenderedEvent,
+    FilterChangedEvent,
+    ModelUpdatedEvent,
     SelectionChangedEvent,
+    RowNode,
     GridApi,
     GridOptions,
     GridReadyEvent,
@@ -16,7 +19,7 @@ import 'ag-grid-community/dist/styles/ag-theme-alpine/sass/ag-theme-alpine.scss'
 import './MusicSelectTable.scss';
 import { useDataSourceState } from '../context/DataSourceContext';
 import { usePlaylistState } from '../context/PlaylistContext';
-import { IMusicRecordJson } from '../models/DataModel';
+import { IMusicRecordJson, IMusicRecordGrid } from '../models/DataModel';
 
 const getGridOptions: () => GridOptions = () => {
     return {
@@ -59,17 +62,41 @@ const getColDef: () => ColDef[] = () => {
     ];
 };
 
-const MusicSelectTable: React.FC<{ query: string | undefined }> = ({
-    query,
-}) => {
+const MusicSelectTable: React.FC<{}> = ({}) => {
+    const [filterText, setFilterText] = useState<string>();
     const dataSource = useDataSourceState();
     // const [playlist, setPlaylist] = usePlaylistState();
     const gridApi = useRef<GridApi | null>(null);
+    const [gridFiltered, setGridFiltered] = useState<boolean>(false);
     const gridColumnApi = useRef<ColumnApi | null>(null);
     const colDef = useRef<ColDef[]>([]);
     const gridOptions = useRef<GridOptions | undefined>(undefined);
     colDef.current = getColDef();
     gridOptions.current = getGridOptions();
+
+    const onFilterTextChanged: (
+        event: React.ChangeEvent<HTMLInputElement>
+    ) => void = (event) => {
+        setFilterText(event.target.value);
+        gridApi.current?.setQuickFilter(filterText);
+    };
+
+    const onFilterTextKeyPress: (
+        event: React.KeyboardEvent<HTMLInputElement>
+    ) => void = (event) => {
+        if (event.key === 'Enter' && document.activeElement) {
+            const activeElement = document.activeElement as HTMLElement;
+            activeElement.blur();
+        }
+    };
+
+    const onFilterChanged = (event: FilterChangedEvent): void => {
+        const filterPresent = event.api.isAnyFilterPresent();
+        const filteredSongs: IMusicRecordJson[] = [];
+        event.api.forEachNodeAfterFilter((rowNode: RowNode, index: number) => {
+            filteredSongs.push(rowNode.data);
+        });
+    };
 
     const onGridReady = (params: GridReadyEvent): void => {
         gridApi.current = params.api;
@@ -82,35 +109,47 @@ const MusicSelectTable: React.FC<{ query: string | undefined }> = ({
         console.log();
     };
 
+    const onModelUpdated = (event: ModelUpdatedEvent): void => {
+        const rows = event.api.getDisplayedRowCount();
+        if (rows > 0) {
+            event.api.hideOverlay();
+        } else {
+            event.api.showNoRowsOverlay();
+        }
+    };
+
     return (
-        <div className="ag-theme-alpine music-table-wrapper">
-            <div className="music-grid-panel">
-                <div className="centered">
+        <div className="music-table__wrapper">
+            <div className="music-table__panel">
                     <input
                         type="text"
-                        className="input-filter"
                         placeholder="Search for songs here."
+                        onChange={onFilterTextChanged}
                     ></input>
-                </div>
                 <div className="hrule"></div>
                 <button
-                    className="btn-clear-filter"
+                    className="clear"
                     onClick={() => gridApi.current?.deselectAll()}
                 >
                     Clear Selected
                 </button>
             </div>
-            <AgGridReact
-                columnDefs={colDef.current}
-                rowData={dataSource}
-                gridOptions={gridOptions.current}
-                onFirstDataRendered={onFirstDataRendered}
-                onGridReady={onGridReady}
-                rowClassRules={{ 'row-selected': 'data.selected === true' }}
-                rowSelection="multiple"
-                rowMultiSelectWithClick={true}
-                onSelectionChanged={onSelectionChanged}
-            ></AgGridReact>
+            <div className="ag-theme-alpine music-table__grid">
+                <AgGridReact
+                    rowClass={"grid-row"}
+                    columnDefs={colDef.current}
+                    rowData={dataSource}
+                    gridOptions={gridOptions.current}
+                    onFirstDataRendered={onFirstDataRendered}
+                    onGridReady={onGridReady}
+                    rowClassRules={{ 'row-selected': 'data.selected === true' }}
+                    rowSelection="multiple"
+                    rowMultiSelectWithClick={true}
+                    onFilterChanged={onFilterChanged}
+                    onModelUpdated={onModelUpdated}
+                    onSelectionChanged={onSelectionChanged}
+                ></AgGridReact>
+            </div>
         </div>
     );
 };

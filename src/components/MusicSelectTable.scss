@@ -1,71 +1,67 @@
-.music-table-wrapper {
-    height: 560px;
-    width: 500px;
-}
+@use 'src/utils/colors' as colors;
 
-.music-table-wrapper a {
-    color: var(--color-red);
-    text-decoration: none;
-}
+.music-table {
 
-.row {
-    display: flex;
-    flex-direction: row;
-}
-
-.selected {
-    display: flex;
-    flex-direction: column;
-}
-
-.item {
-    margin-bottom: 5px;
-}
-
-.generated {
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    width: 100%;
-    color: var(--color-red);
-    width: 500px;
-}
-
-.generated:hover {
-    color: var(--color-black-soft);
-}
-
-/* music-table */
-
-.table-search__input {
-    width: 100%;
-    margin: 0;
-}
-
-.music-table__btn-clear {
-    width: 100%;
-}
-
-/* music-table__panel */
-
-.music-grid-panel {
-    background-color: var(--color-grey-soft);
-    border-radius: 2px;
-    border: 1px solid var(--color-grey-dark);
-    margin-bottom: 0.5em;
-    padding: 1em;
-
-    .input-filter {
-        width: 100%;
-        font-size: 10pt;
-        margin: 0;
+    &__wrapper {
     }
 
-    .btn-clear-filter {
-        font-size: 10pt;
-        margin: 0;
+    &__grid {
+        height: 560px;
+        width: 500px;
+
+        .grid-row {
+            a {
+                color: colors.$red;
+                text-decoration: none;
+            }
+        }
+
+        .row {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .selected {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .item {
+            margin-bottom: 5px;
+        }
+
+        .generated {
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            width: 100%;
+            color: var(--color-red);
+            width: 500px;
+        }
+
+        .generated:hover {
+            color: var(--color-black-soft);
+        }
     }
-    
-    
+
+    &__panel {
+        background-color: var(--color-grey-soft);
+        border-radius: 2px;
+        border: 1px solid var(--color-grey-dark);
+        margin-bottom: 0.5em;
+        padding: 1em;
+
+        input {
+            width: 100%;
+            font-size: 10pt;
+            margin: 0;
+        }
+
+        button {
+            font-size: 10pt;
+            margin: 0;
+            // background-color: colors.$grey-soft;
+        }
+    }
 }
 
 div .hrule {
