@@ -3,14 +3,14 @@ import { AgGridReact } from 'ag-grid-react';
 import {
     ColDef,
     ColumnApi,
-    FirstDataRenderedEvent,
     FilterChangedEvent,
-    ModelUpdatedEvent,
-    SelectionChangedEvent,
-    RowNode,
+    FirstDataRenderedEvent,
     GridApi,
     GridOptions,
     GridReadyEvent,
+    ModelUpdatedEvent,
+    RowNode,
+    SelectionChangedEvent,
 } from 'ag-grid-community';
 
 import 'ag-grid-community/dist/styles/ag-grid.scss';
