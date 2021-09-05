@@ -136,18 +136,18 @@ const MusicSelectTable: React.FC<{}> = ({}) => {
             </div>
             <div className="ag-theme-alpine music-table__grid">
                 <AgGridReact
-                    rowClass={"grid-row"}
                     columnDefs={colDef.current}
-                    rowData={dataSource}
                     gridOptions={gridOptions.current}
+                    onFilterChanged={onFilterChanged}
                     onFirstDataRendered={onFirstDataRendered}
                     onGridReady={onGridReady}
-                    rowClassRules={{ 'row-selected': 'data.selected === true' }}
-                    rowSelection="multiple"
-                    rowMultiSelectWithClick={true}
-                    onFilterChanged={onFilterChanged}
                     onModelUpdated={onModelUpdated}
                     onSelectionChanged={onSelectionChanged}
+                    rowClass={'grid-row'}
+                    rowClassRules={{ 'row-selected': 'data.selected === true' }}
+                    rowData={dataSource}
+                    rowMultiSelectWithClick={true}
+                    rowSelection="multiple"
                 ></AgGridReact>
             </div>
         </div>
