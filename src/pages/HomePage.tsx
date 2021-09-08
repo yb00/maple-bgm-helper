@@ -14,10 +14,21 @@ const HomePage: React.FC<{ initialPlaylist?: IMusicRecordJson[] }> = ({
 
     return (
         <div className="home">
-            <p>Please select from below:</p>
             <PlaylistProvider>
-                <MusicSelectTable />
-                <MusicResults />
+                <div className="playlist">
+                    <div className="select--text">
+                        <p>Please select from below:</p>
+                    </div>
+                    <div className="select">
+                        <MusicSelectTable />
+                    </div>
+                    <div className="results--text">
+                        <p>Your results:</p>
+                    </div>
+                    <div className="results">
+                        <MusicResults />
+                    </div>
+                </div>
             </PlaylistProvider>
         </div>
     );

@@ -5,3 +5,37 @@
 p {
     margin-bottom: 1rem;
 }
+
+.playlist {
+    display: grid;
+    grid-template-columns: [a] 50% [b] 50% [c];
+    grid-template-rows: [a] 10% [b] auto [c];
+
+    .select {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 2;
+        grid-row-end: 3;
+
+        &--text {
+            grid-column-start: 1;
+            grid-column-end: 2;
+            grid-row-start: 1;
+            grid-row-end: 2;
+        }
+    }
+
+    .results {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 2;
+        grid-row-end: 3;
+
+        &--text {
+            grid-column-start: 2;
+            grid-column-end: 3;
+            grid-row-start: 1;
+            grid-row-end: 2;
+        }
+    }
+}

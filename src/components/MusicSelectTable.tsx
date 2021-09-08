@@ -56,6 +56,14 @@ const getColDef: () => ColDef[] = () => {
             },
         },
         {
+            headerName: 'Description',
+            field: 'description',
+        },
+        {
+            headerName: 'Filename',
+            field: 'filename',
+        },
+        {
             headerName: 'Year',
             field: 'metadata.year',
         },
@@ -106,7 +114,7 @@ const MusicSelectTable: React.FC<{}> = ({}) => {
         event.columnApi.autoSizeAllColumns();
     };
     const onSelectionChanged = (event: SelectionChangedEvent): void => {
-        console.log();
+        console.log(gridApi.current?.getSelectedNodes());
     };
 
     const onModelUpdated = (event: ModelUpdatedEvent): void => {
@@ -118,14 +126,19 @@ const MusicSelectTable: React.FC<{}> = ({}) => {
         }
     };
 
+    const sizeToFit = (): void => {
+        gridApi.current?.sizeColumnsToFit();
+    };
+
     return (
         <div className="music-table__wrapper">
             <div className="music-table__panel">
-                    <input
-                        type="text"
-                        placeholder="Search for songs here."
-                        onChange={onFilterTextChanged}
-                    ></input>
+                <input
+                    onChange={onFilterTextChanged}
+                    onKeyPress={onFilterTextKeyPress}
+                    placeholder="Search for songs here."
+                    type="text"
+                ></input>
                 <div className="hrule"></div>
                 <button
                     className="clear"
@@ -133,6 +146,7 @@ const MusicSelectTable: React.FC<{}> = ({}) => {
                 >
                     Clear Selected
                 </button>
+                <button onClick={sizeToFit}>Autofit</button>
             </div>
             <div className="ag-theme-alpine music-table__grid">
                 <AgGridReact

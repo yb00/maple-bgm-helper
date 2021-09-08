@@ -5,7 +5,7 @@ import './MusicResults.scss';
 const MusicResults: React.FC<{ }> = ({ }) => {
     return (
         <div>
-            <p>Results: </p>
+            
         </div>
     );
 };
