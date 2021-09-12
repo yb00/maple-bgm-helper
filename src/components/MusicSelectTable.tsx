@@ -19,6 +19,7 @@ import 'ag-grid-community/dist/styles/ag-theme-alpine/sass/ag-theme-alpine.scss'
 import './MusicSelectTable.scss';
 import { useDataSourceState } from '../context/DataSourceContext';
 import { usePlaylistState } from '../context/PlaylistContext';
+
 import { IMusicRecordJson, IMusicRecordGrid } from '../models/DataModel';
 
 const getGridOptions: () => GridOptions = () => {
@@ -71,14 +72,17 @@ const getColDef: () => ColDef[] = () => {
 };
 
 const MusicSelectTable: React.FC<{}> = ({}) => {
-    const [filterText, setFilterText] = useState<string>();
     const dataSource = useDataSourceState();
-    // const [playlist, setPlaylist] = usePlaylistState();
-    const gridApi = useRef<GridApi | null>(null);
+    const [playlist, setPlaylist] = usePlaylistState();
+
+    const [filterText, setFilterText] = useState<string>();
     const [gridFiltered, setGridFiltered] = useState<boolean>(false);
+    
+    const gridApi = useRef<GridApi | null>(null);
     const gridColumnApi = useRef<ColumnApi | null>(null);
     const colDef = useRef<ColDef[]>([]);
     const gridOptions = useRef<GridOptions | undefined>(undefined);
+
     colDef.current = getColDef();
     gridOptions.current = getGridOptions();
 
@@ -116,7 +120,6 @@ const MusicSelectTable: React.FC<{}> = ({}) => {
     const onSelectionChanged = (event: SelectionChangedEvent): void => {
         console.log(gridApi.current?.getSelectedNodes());
     };
-
     const onModelUpdated = (event: ModelUpdatedEvent): void => {
         const rows = event.api.getDisplayedRowCount();
         if (rows > 0) {
@@ -125,7 +128,6 @@ const MusicSelectTable: React.FC<{}> = ({}) => {
             event.api.showNoRowsOverlay();
         }
     };
-
     const sizeToFit = (): void => {
         gridApi.current?.sizeColumnsToFit();
     };

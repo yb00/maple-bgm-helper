@@ -10,7 +10,6 @@ import './HomePage.scss';
 const HomePage: React.FC<{ initialPlaylist?: IMusicRecordJson[] }> = ({
     initialPlaylist = [],
 }) => {
-    const [playlist, setPlaylist] = useState(initialPlaylist);
 
     return (
         <div className="home">

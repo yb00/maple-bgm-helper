@@ -27,6 +27,9 @@ module.exports = {
         extensions: ['.tsx', '.ts', '.jsx', '.js'],
     },
     mode: 'development',
+    devServer: {
+        port: 8081,
+    },
     plugins: [
         new HtmlWebpackPlugin({
             template: 'src/index.html',
