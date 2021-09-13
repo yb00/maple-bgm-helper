@@ -6,6 +6,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'index_bundle.js',
+        clean: true
     },
     module: {
         rules: [
@@ -27,11 +28,15 @@ module.exports = {
         extensions: ['.tsx', '.ts', '.jsx', '.js'],
     },
     mode: 'development',
+    devtool: 'inline-source-map',
     devServer: {
         port: 8081,
+        static: './dist'
     },
     plugins: [
         new HtmlWebpackPlugin({
+            title: 'Output Management',
+            title: 'Development',
             template: 'src/index.html',
         }),
     ],
