@@ -1,24 +1,42 @@
-import React from 'react';
-import { IPlaylist } from '../models/PlaylistModel';
+import React, {
+    createContext,
+    Dispatch,
+    ReactNode,
+    ReactElement,
+    useState,
+    SetStateAction
+} from 'react';
+import { IPlaylist, PlaylistEmpty } from '../models/PlaylistModel';
 
-type State = [IPlaylist[], React.Dispatch<React.SetStateAction<IPlaylist[]>>];
-type PlaylistProviderProps = { children: React.ReactNode };
+const DEFAULT_VALUE = {
+    state: PlaylistEmpty(),
+    setState: () => {},
+};
 
-const PlaylistStateContext = React.createContext<State | undefined>(undefined);
+type PlaylistContext = {
+    state: IPlaylist,
+    setState: Dispatch<SetStateAction<IPlaylist>>
+}
+
+type PlaylistProviderProps = { children: ReactNode };
+
+const PlaylistStateContext = createContext<PlaylistContext>(
+    DEFAULT_VALUE
+);
 
 export const PlaylistProvider: ({
     children,
-}: PlaylistProviderProps) => React.ReactElement = ({ children }) => {
-    const [state, setState] = React.useState<State>();
+}: PlaylistProviderProps) => ReactElement = ({ children }) => {
+    const [state, setState] = useState(DEFAULT_VALUE.state);
 
     return (
-        <PlaylistStateContext.Provider value={state}>
+        <PlaylistStateContext.Provider value={{ state, setState }}>
             {children}
         </PlaylistStateContext.Provider>
     );
 };
 
-export const usePlaylistState: () => State = () => {
+export const usePlaylistState: () => PlaylistContext = () => {
     const context = React.useContext(PlaylistStateContext);
     if (!context) {
         throw new Error(

@@ -73,7 +73,7 @@ const getColDef: () => ColDef[] = () => {
 
 const MusicSelectTable: React.FC<{}> = ({}) => {
     const dataSource = useDataSourceState();
-    const [playlist, setPlaylist] = usePlaylistState();
+    const playlist = usePlaylistState();
 
     const [filterText, setFilterText] = useState<string>();
     const [gridFiltered, setGridFiltered] = useState<boolean>(false);
